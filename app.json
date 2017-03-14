@@ -1,0 +1,12 @@
+{
+  "name": "NumberWang generator",
+  "description": "A (terrible)random number generator written in Go",
+  "keywords": [
+    "comedy",
+    "go"
+  ],
+  "image": "heroku/go:1.8",
+  "mount_dir": "src/github.com/spikeheap/golang-numberwang",
+  "website": "http://github.com/spikeheap/golang-numberwang",
+  "repository": "http://github.com/spikeheap/golang-numberwang"
+}

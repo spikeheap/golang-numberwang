@@ -5,14 +5,19 @@ import (
   "log"
   "math/rand"
   "net/http"
+  "os"
   "strconv"
 )
  
 func main() {
+  port := getenv("PORT", "8080")
   http.HandleFunc("/", handler)
   http.HandleFunc("/about/", about)
   http.HandleFunc("/favicon.ico", favicon)
-  http.ListenAndServe(":8080", nil)
+
+  log.Println("Listening on "+port)
+  http.ListenAndServe(":"+port, nil)
+  log.Println("Exiting...")
 }
 
 func favicon(w http.ResponseWriter, r *http.Request) {
@@ -65,4 +70,12 @@ func about (w http.ResponseWriter, r *http.Request) {
     log.Println(string(b))
     w.Write(b)
   }
+}
+
+func getenv(key, fallback string) string {
+    value := os.Getenv(key)
+    if len(value) == 0 {
+        return fallback
+    }
+    return value
 }
